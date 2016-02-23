@@ -1,0 +1,26 @@
+{
+  "name": "voilab-mapper",
+  "version": "0.1.0",
+  "description": "Library that can transform an object (or an array of objects) using a mapping configuration.",
+  "main": "voilab-mapper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voilab/voilab-mapper.git"
+  },
+  "keywords": [
+    "filter",
+    "data"
+  ],
+  "dependencies": {
+    "lodash": "4.*"
+  },
+  "author": "Joël Poulin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/voilab/voilab-mapper/issues"
+  },
+  "homepage": "https://github.com/voilab/voilab-mapper#readme"
+}
