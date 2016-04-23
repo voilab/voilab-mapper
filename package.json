@@ -1,6 +1,6 @@
 {
   "name": "voilab-mapper",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Library that can transform an object (or an array of objects) using a mapping configuration.",
   "main": "voilab-mapper.js",
   "scripts": {
