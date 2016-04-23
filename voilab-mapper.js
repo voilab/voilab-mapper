@@ -10,11 +10,12 @@
      * @returns {Object}
      */
     var map = function (record, mapper) {
-        var lodash = require('lodash');
+        var lodash = require('lodash'),
+            mapper_supplementary_args = Array.prototype.slice.call(arguments, 2);
 
         if (lodash.isArray(record)) {
             return lodash.map(record, function (u) {
-                return map(u, mapper);
+                return map.apply(map, [u, mapper].concat(mapper_supplementary_args));
             });
         }
 
@@ -23,10 +24,10 @@
         }
 
         // you can provide a function as the mapper.
-        // if you do so, the mapper is called with the record as a parameter
+        // if you do so, the mapper is called with the record as the first parameter and all subsequent provided parameters coming after
         // this way, the mapper can be changed accordingly with the record content
         if (lodash.isFunction(mapper)) {
-            mapper = mapper(record);
+            mapper = mapper.apply(mapper, [record].concat(mapper_supplementary_args));
         }
 
         return lodash.transform(mapper, function (acc, value, key) {
