@@ -37,7 +37,11 @@
             }
             if (lodash.isString(value)) {
                 if (record) {
-                    lodash.set(acc, key, lodash.get(record, value, null));
+                    if (lodash.isFunction(record[value])) {
+                        acc[key] = record[value]();
+                    } else {
+                        lodash.set(acc, key, lodash.get(record, value, null));
+                    }
                 }
                 return true;
             }
