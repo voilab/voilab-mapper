@@ -64,7 +64,7 @@
                 return true;
             }
             if (lodash.isFunction(value)) {
-                callback_result = value(record);
+                callback_result = value.apply(value, [record].concat(mapper_supplementary_args));
                 if (options.strict && (callback_result === undefined || (lodash.isObject(callback_result) && lodash.isEmpty(callback_result)))) {
                     return true;
                 }
@@ -75,11 +75,12 @@
 
             // recursion
             if (lodash.isObject(value)) {
-                callback_result = map((options.recurseOnBaseRecord ? record : record[key]), value, options);
+                callback_result = map.apply(map, [(options.recurseOnBaseRecord ? record : record[key]), value, options].concat(mapper_supplementary_args));
                 if (options.strict && (callback_result === undefined || lodash.isEmpty(callback_result))) {
                     return true;
                 }
                 acc[key] = callback_result;
+                return true;
             }
         }, {});
     };
